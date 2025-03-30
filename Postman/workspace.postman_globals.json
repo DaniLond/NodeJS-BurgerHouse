@@ -1,0 +1,15 @@
+{
+	"id": "29623e59-fb80-49ac-8d90-22119c3cb346",
+	"values": [
+		{
+			"key": "jwt",
+			"value": "",
+			"type": "secret",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2025-03-30T22:56:22.877Z",
+	"_postman_exported_using": "Postman/11.38.7"
+}
