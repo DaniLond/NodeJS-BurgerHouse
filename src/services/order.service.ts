@@ -41,13 +41,20 @@ class OrderService {
             throw error;
         }
     }
-    async updateStatus(id: string, state: string): Promise<OrderDocument | null> {
-        try {
-            return await Order.findByIdAndUpdate(id, { state }, { returnOriginal: false });
-        } catch (error) {
-            throw error;
-        }
+ async updateStatus(id: string, state: string): Promise<OrderDocument | null> {
+    try {
+        const updatedOrder = await Order.findByIdAndUpdate(
+            id,
+            { state },
+            { new: true, runValidators: true }
+        );
+        return updatedOrder;
+    } catch (error) {
+        console.error("Error en updateStatus:", error);
+        throw error;
     }
+}
+
 
     async getByUserEmail(email: string): Promise<OrderDocument[]> {
         try {
