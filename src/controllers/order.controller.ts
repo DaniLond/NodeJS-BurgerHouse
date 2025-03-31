@@ -24,25 +24,40 @@ class OrderController {
         }
     }
 
-   
     async getById(req: Request, res: Response) {
-        try {
-            const order: OrderDocument | null = await orderService.getById(req.params.id);
-            if (!order) {
-                 res.status(404).json({ message: "Orden no encontrada" });
-                return;
-            }
-            res.json(order);
-        } catch (error) {
-            res.status(500).json({ message: "Error al obtener la orden" });
-            return;
+    try {
+        const claims = securityService.getClaims(req.headers.authorization);
+
+        const order = await orderService.getById(req.params.id);
+
+        if (!order) {
+             res.status(404).json({ message: "Orden no encontrada" });
+             return;
         }
 
-        
+        if ((await claims).role === 'admin') {
+             res.json(order);
+             return;
+        }
+        if ((await claims).role=== 'customer' && order.user !==(await claims).email ) {
+             res.status(403).json({ message: "No tienes permiso para ver esta orden" });
+             return; 
+        }
+
+        res.json(order);
+    } catch (error) {
+        res.status(401).json({ message: "Error al obtener la orden" });
+        return; 
     }
+}
+
+
+   
+ 
     async update(req: Request, res: Response) {
     try {
-        const token = req.header('Authorization')?.replace('Bearer ', '');
+        const token = req.header('Authorization');
+        console.log(token);
         if (!token) {
             res.status(401).json({ message: "No autorizado" });
             return;
@@ -63,14 +78,17 @@ class OrderController {
 
         const updatedOrder: OrderDocument | null = await orderService.update(req.params.id, req.body as OrderInput);
         res.json(updatedOrder);
+        return;
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: "Error al actualizar la orden" });
+        return;
     }
 }
 
 async delete(req: Request, res: Response) {
     try {
-        const token = req.header('Authorization')?.replace('Bearer ', '');
+        const token = req.header('Authorization');
         if (!token) {
             res.status(401).json({ message: "No autorizado" });
             return;

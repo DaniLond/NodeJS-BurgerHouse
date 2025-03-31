@@ -7,12 +7,15 @@ const roleAuth = [auth, authorizeRoles(['admin', 'customer', 'dealer'])];
 
 const roleAuth_D = [auth, authorizeRoles(['admin', 'customer'])];
 
+const roleAuthWithD = [auth, authorizeRoles(['admin','dealer' ])];
+
+
 const router = Router();
-router.post("/", orderController.create);
-router.get("/", roleAuth, orderController.getAll);
-router.get("/:id", orderController.getById);
-router.put("/:id", roleAuth, orderController.update);
+router.post("/",roleAuth, orderController.create);
+router.get("/", roleAuthWithD, orderController.getAll);
+router.get("/:id", roleAuth, orderController.getById);
+router.put("/:id", roleAuth_D, orderController.update);
 router.delete("/:id",roleAuth_D, orderController.delete);
-router.patch("/status/:id", orderController.updateStatus);
+router.patch("/status/:id",roleAuthWithD, orderController.updateStatus);
 
 export default router;

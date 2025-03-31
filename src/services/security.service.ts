@@ -24,18 +24,27 @@ class SecurityService{
         throw new Error("Invalid token");
     }
 }
-async getClaims(token: string) {
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as jwt.JwtPayload;
-            return {
-                _id: decoded._id,
-                email: decoded.email,
-                role: decoded.role
-            };
-        } catch (error) {
-            throw new Error("Invalid token");
-        }
+async getClaims(token?: string) {
+    if (!token) {
+        throw new Error("Token no proporcionado");
     }
+    try {
+        const tokenParts = token.split(" ");
+        if (tokenParts.length !== 2 || tokenParts[0] !== "Bearer") {
+            throw new Error("Formato de token inválido");
+        }
+
+        const decoded = jwt.verify(tokenParts[1], process.env.JWT_SECRET || "secret") as jwt.JwtPayload;
+
+        return {
+            _id: decoded._id,
+            email: decoded.email,
+            role: decoded.role
+        };
+    } catch (error) {
+        throw new Error("Token inválido");
+    }
+}
 }
 
 
