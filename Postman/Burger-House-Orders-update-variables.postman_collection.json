@@ -19,31 +19,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"\r",
-											"var template = `\r",
-											"<style type=\"text/css\">\r",
-											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
-											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
-											"    .tftable tr {background-color:#ffffff;}\r",
-											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
-											"    .tftable tr:hover {background-color:#e0ffff;}\r",
-											"</style>\r",
-											"\r",
-											"<table class=\"tftable\" border=\"1\">\r",
-											"    <tr>\r",
-											"        <th>Message</th>\r",
-											"    </tr>\r",
-											"    <tr>\r",
-											"        <td>{{response.message}}</td>\r",
-											"    </tr>\r",
-											"</table>\r",
-											"`;\r",
-											"\r",
-											"function constructVisualizerPayload() {\r",
-											"    return { response: pm.response.json() }\r",
-											"}\r",
-											"\r",
-											"pm.visualizer.set(template, constructVisualizerPayload());"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -53,32 +29,8 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});"
+											"\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -112,12 +64,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/orders",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders"
 									]
@@ -143,32 +93,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -201,12 +126,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/orders/67ea338661392bdc15db81e5",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders/67ea338661392bdc15db81e5",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders",
 										"67ea338661392bdc15db81e5"
@@ -232,32 +155,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -281,12 +179,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3200/orders/2222",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders/2222",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders",
 										"2222"
@@ -305,6 +201,25 @@
 							"item": [
 								{
 									"name": "Login costumer",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();\r",
+													"\r",
+													"if (jsonData && jsonData.token) {\r",
+													"    pm.collectionVariables.set(\"token\", jsonData.token);\r",
+													"    console.log(\"Nuevo token guardado:\", jsonData.token);\r",
+													"} else {\r",
+													"    console.error(\"No se encontró el token en la respuesta o el formato es incorrecto\");\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"protocolProfileBehavior": {
 										"disableCookies": true
 									},
@@ -401,12 +316,10 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:3200/orders",
-											"protocol": "http",
+											"raw": "{{baseurl}}/orders",
 											"host": [
-												"localhost"
+												"{{baseurl}}"
 											],
-											"port": "3200",
 											"path": [
 												"orders"
 											]
@@ -491,12 +404,10 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:3200/orders/67ea338661392bdc15db81e5",
-											"protocol": "http",
+											"raw": "{{baseurl}}/orders/67ea338661392bdc15db81e5",
 											"host": [
-												"localhost"
+												"{{baseurl}}"
 											],
-											"port": "3200",
 											"path": [
 												"orders",
 												"67ea338661392bdc15db81e5"
@@ -583,12 +494,10 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:3200/orders/67eafbeb03a0f97182a07802",
-											"protocol": "http",
+											"raw": "{{baseurl}}/orders/67eafbeb03a0f97182a07802",
 											"host": [
-												"localhost"
+												"{{baseurl}}"
 											],
-											"port": "3200",
 											"path": [
 												"orders",
 												"67eafbeb03a0f97182a07802"
@@ -673,12 +582,10 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:3200/orders/67eafbeb03a0f97182a07802",
-											"protocol": "http",
+											"raw": "{{baseurl}}/orders/67eafbeb03a0f97182a07802",
 											"host": [
-												"localhost"
+												"{{baseurl}}"
 											],
-											"port": "3200",
 											"path": [
 												"orders",
 												"67eafbeb03a0f97182a07802"
@@ -764,14 +671,11 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:3200/orders/67ea338661392bdc15db81e5",
-											"protocol": "http",
+											"raw": "{{baseurl}}orders/67ea338661392bdc15db81e5",
 											"host": [
-												"localhost"
+												"{{baseurl}}orders"
 											],
-											"port": "3200",
 											"path": [
-												"orders",
 												"67ea338661392bdc15db81e5"
 											]
 										}
@@ -844,12 +748,10 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:3200/orders/67eafbeb03a0f97182a077fd",
-											"protocol": "http",
+											"raw": "{{baseurl}}/orders/67eafbeb03a0f97182a077fd",
 											"host": [
-												"localhost"
+												"{{baseurl}}"
 											],
-											"port": "3200",
 											"path": [
 												"orders",
 												"67eafbeb03a0f97182a077fd"
@@ -924,12 +826,10 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:3200/orders/67ea339c61392bdc15db81ed",
-											"protocol": "http",
+											"raw": "{{baseurl}}/orders/67ea339c61392bdc15db81ed",
 											"host": [
-												"localhost"
+												"{{baseurl}}"
 											],
-											"port": "3200",
 											"path": [
 												"orders",
 												"67ea339c61392bdc15db81ed"
@@ -939,73 +839,6 @@
 									"response": []
 								}
 							]
-						},
-						{
-							"name": "Login admin",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"leidy@gmail.com\",\r\n    \"password\": \"Daniela123\"\r\n}\r\n\r\n",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:3200/users/login",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3200",
-									"path": [
-										"users",
-										"login"
-									]
-								}
-							},
-							"response": []
 						},
 						{
 							"name": "Crear orden",
@@ -1024,32 +857,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});\r",
+											"\r",
 											""
 										],
 										"type": "text/javascript",
@@ -1083,12 +891,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/orders",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders"
 									]
@@ -1103,36 +909,17 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});\r",
 											""
 										],
 										"type": "text/javascript",
 										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"packages": {},
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -1162,12 +949,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/orders",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders"
 									]
@@ -1197,32 +982,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1255,12 +1015,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/orders/67eae88eb915786b5e54c80c",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders/67eae88eb915786b5e54c80c",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders",
 										"67eae88eb915786b5e54c80c"
@@ -1287,32 +1045,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1336,12 +1069,10 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3200/orders/333333",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders/333333",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders",
 										"333333"
@@ -1372,32 +1103,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1430,12 +1136,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/orders/status/67ea339c61392bdc15db81ed",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders/status/67ea339c61392bdc15db81ed",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders",
 										"status",
@@ -1462,32 +1166,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1520,12 +1199,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/orders/status/67eae88eb915786b5e54c80c",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders/status/67eae88eb915786b5e54c80c",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders",
 										"status",
@@ -1558,32 +1235,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1616,12 +1268,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/orders/44444",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders/44444",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders",
 										"44444"
@@ -1648,32 +1298,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.sendRequest({\r",
-											"    url: \"http://localhost:3200/users/login\",\r",
-											"    method: \"POST\",\r",
-											"    header: {\r",
-											"        \"Content-Type\": \"application/json\"\r",
-											"    },\r",
-											"    body: {\r",
-											"        mode: \"raw\",\r",
-											"        raw: JSON.stringify({\r",
-											"            email: \"leidy@gmail.com\",\r",
-											"            password: \"Daniela123\"\r",
-											"        })\r",
-											"    }\r",
-											"}, function (err, response) {\r",
-											"    if (err) {\r",
-											"        console.log(\"Error en login:\", err);\r",
-											"    } else {\r",
-											"        const jsonResponse = response.json();\r",
-											"        if (jsonResponse.token) {\r",
-											"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
-											"            console.log(\"Token guardado:\", jsonResponse.token);\r",
-											"        } else {\r",
-											"            console.log(\"No se recibió token en la respuesta\");\r",
-											"        }\r",
-											"    }\r",
-											"});"
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1697,12 +1322,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3200/orders/67eae869b915786b5e54c806",
-									"protocol": "http",
+									"raw": "{{baseurl}}/orders/67eae869b915786b5e54c806",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"orders",
 										"67eae869b915786b5e54c806"
@@ -1736,12 +1359,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/users/create",
-									"protocol": "http",
+									"raw": "{{baseurl}}/users/create",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"users",
 										"create"
@@ -1752,7 +1373,36 @@
 						},
 						{
 							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"\r",
+											"if (jsonData && jsonData.token) {\r",
+											"    pm.collectionVariables.set(\"token\", jsonData.token);\r",
+											"    console.log(\"Nuevo token guardado:\", jsonData.token);\r",
+											"} else {\r",
+											"    console.error(\"No se encontró el token en la respuesta o el formato es incorrecto\");\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -1765,12 +1415,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/users/login",
-									"protocol": "http",
+									"raw": "{{baseurl}}/users/login",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"users",
 										"login"
@@ -1796,12 +1444,10 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3200/users",
-									"protocol": "http",
+									"raw": "{{baseurl}}/users",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"users"
 									]
@@ -1820,21 +1466,14 @@
 								"method": "PUT",
 								"header": [],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"isabella123@gmail.com\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									"mode": "urlencoded",
+									"urlencoded": []
 								},
 								"url": {
-									"raw": "http://localhost:3200/users/update/Isabella@gmail.com",
-									"protocol": "http",
+									"raw": "{{baseurl}}/users/update/Isabella@gmail.com",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"users",
 										"update",
@@ -1861,12 +1500,10 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3200/users/delete/luisa@gmail.com",
-									"protocol": "http",
+									"raw": "{{baseurl}}/users/delete/luisa@gmail.com",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"users",
 										"delete",
@@ -1888,16 +1525,21 @@
 					"item": [
 						{
 							"name": "getProducts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
 								"url": {
-									"raw": "http://localhost:3200/products",
-									"protocol": "http",
+									"raw": "{{baseurl}}/products",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"products"
 									]
@@ -1931,12 +1573,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/products/create",
-									"protocol": "http",
+									"raw": "{{baseurl}}/products/create",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"products",
 										"create"
@@ -1965,12 +1605,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3200/products/update/Papas Fritas",
-									"protocol": "http",
+									"raw": "{{baseurl}}/products/update/Papas Fritas",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"products",
 										"update",
@@ -1991,12 +1629,10 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3200/products/delete/Aros de Cebolla",
-									"protocol": "http",
+									"raw": "{{baseurl}}/products/delete/Aros de Cebolla",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3200",
 									"path": [
 										"products",
 										"delete",
@@ -2038,6 +1674,25 @@
 			"key": "token",
 			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "baseurl",
+			"value": "https://nodejs-burgerhouse-production.up.railway.app",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "jwt",
+			"value": ""
 		}
 	]
 }

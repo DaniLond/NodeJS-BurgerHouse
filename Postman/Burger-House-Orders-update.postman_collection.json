@@ -1,0 +1,1698 @@
+{
+	"info": {
+		"_postman_id": "acb5c1fb-862c-4127-b5e9-44a8035268ab",
+		"name": "Burger-House-Orders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38819682"
+	},
+	"item": [
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Gets",
+					"item": [
+						{
+							"name": "Obtener todas las ordenes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disableCookies": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"nata@example.com\",\r\n    \"total\": 20000,\r\n    \"date\": \"2024-03-26T00:00:00.000Z\",\r\n    \"state\": \"Pendiente\",\r\n    \"products\": [\r\n        {\r\n            \"name\": \"Hamburguesa con mucha tocineta\",\r\n            \"price\": 15000,\r\n            \"quantity\": 1\r\n        }\r\n    ],\r\n    \"address\": \"calle 225 # 38 - 45\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener ordenes por id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"nata@example.com\",\r\n    \"total\": 20000,\r\n    \"date\": \"2024-03-26T00:00:00.000Z\",\r\n    \"state\": \"Pendiente\",\r\n    \"products\": [\r\n        {\r\n            \"name\": \"Hamburguesa Clásica\",\r\n            \"price\": 15000,\r\n            \"quantity\": 1\r\n        }\r\n    ],\r\n    \"address\": \"calle 225 # 38 - 45\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders/67ea338661392bdc15db81e5",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"67ea338661392bdc15db81e5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener una orden que no existe",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableCookies": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/orders/2222",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"2222"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Post",
+					"item": [
+						{
+							"name": "Costumer",
+							"item": [
+								{
+									"name": "Login costumer",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();\r",
+													"\r",
+													"if (jsonData && jsonData.token) {\r",
+													"    pm.collectionVariables.set(\"token\", jsonData.token);\r",
+													"    console.log(\"Nuevo token guardado:\", jsonData.token);\r",
+													"} else {\r",
+													"    console.error(\"No se encontró el token en la respuesta o el formato es incorrecto\");\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableCookies": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"isabella111@example.com\",\r\n  \"password\": \"123456\"\r\n}\r\n\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3200/users/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3200",
+											"path": [
+												"users",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear orden Costumer",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.sendRequest({\r",
+													"    url: \"http://localhost:3200/users/login\",\r",
+													"    method: \"POST\",\r",
+													"    header: {\r",
+													"        \"Content-Type\": \"application/json\"\r",
+													"    },\r",
+													"    body: {\r",
+													"        mode: \"raw\",\r",
+													"        raw: JSON.stringify({\r",
+													"            email: \"isabella111@example.com\",\r",
+													"            password: \"123456\"\r",
+													"        })\r",
+													"    }\r",
+													"}, function (err, response) {\r",
+													"    if (err) {\r",
+													"        console.log(\"Error en login:\", err);\r",
+													"    } else {\r",
+													"        const jsonResponse = response.json();\r",
+													"        if (jsonResponse.token) {\r",
+													"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
+													"            console.log(\"Token guardado:\", jsonResponse.token);\r",
+													"        } else {\r",
+													"            console.log(\"No se recibió token en la respuesta\");\r",
+													"        }\r",
+													"    }\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableCookies": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[{\r\n  \"user\": \"isabella111@example.com\",\r\n  \"total\": 100000,\r\n  \"date\": \"2025-03-30T12:00:00.000Z\",\r\n  \"state\": \"Pendiente\",\r\n  \"products\": [\r\n    {\r\n      \"product_id\": \"654321\",\r\n      \"quantity\": 2,\r\n      \"toppings\": [\r\n        {\r\n          \"topping_id\": \"111\",\r\n          \"quantity\": 1\r\n        },\r\n        {\r\n          \"topping_id\": \"222\",\r\n          \"quantity\": 2\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"product_id\": \"987654\",\r\n      \"quantity\": 1\r\n    }\r\n  ],\r\n  \"address\": \"Palmira\"\r\n},\r\n{\r\n  \"user\": \"isabella111@example.com\",\r\n  \"total\": 500,\r\n  \"date\": \"2025-03-30T12:00:00.000Z\",\r\n  \"state\": \"Pendiente\",\r\n  \"products\": [\r\n    {\r\n      \"product_id\": \"654321\",\r\n      \"quantity\": 2,\r\n      \"toppings\": [\r\n        {\r\n          \"topping_id\": \"111\",\r\n          \"quantity\": 1\r\n        },\r\n        {\r\n          \"topping_id\": \"222\",\r\n          \"quantity\": 2\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"product_id\": \"987654\",\r\n      \"quantity\": 1\r\n    }\r\n  ],\r\n  \"address\": \"Jumbo\"\r\n}\r\n]\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/orders",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"orders"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Obtener orden de un cliente que no pidio esa orden por id",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.sendRequest({\r",
+													"    url: \"http://localhost:3200/users/login\",\r",
+													"    method: \"POST\",\r",
+													"    header: {\r",
+													"        \"Content-Type\": \"application/json\"\r",
+													"    },\r",
+													"    body: {\r",
+													"        mode: \"raw\",\r",
+													"        raw: JSON.stringify({\r",
+													"            email: \"isabella111@example.com\",\r",
+													"            password: \"123456\"\r",
+													"        })\r",
+													"    }\r",
+													"}, function (err, response) {\r",
+													"    if (err) {\r",
+													"        console.log(\"Error en login:\", err);\r",
+													"    } else {\r",
+													"        const jsonResponse = response.json();\r",
+													"        if (jsonResponse.token) {\r",
+													"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
+													"            console.log(\"Token guardado:\", jsonResponse.token);\r",
+													"        } else {\r",
+													"            console.log(\"No se recibió token en la respuesta\");\r",
+													"        }\r",
+													"    }\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true,
+										"disableCookies": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/orders/67ea338661392bdc15db81e5",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"orders",
+												"67ea338661392bdc15db81e5"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Obtener orden de un cliente por Id",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.sendRequest({\r",
+													"    url: \"http://localhost:3200/users/login\",\r",
+													"    method: \"POST\",\r",
+													"    header: {\r",
+													"        \"Content-Type\": \"application/json\"\r",
+													"    },\r",
+													"    body: {\r",
+													"        mode: \"raw\",\r",
+													"        raw: JSON.stringify({\r",
+													"            email: \"isabella111@example.com\",\r",
+													"            password: \"123456\"\r",
+													"        })\r",
+													"    }\r",
+													"}, function (err, response) {\r",
+													"    if (err) {\r",
+													"        console.log(\"Error en login:\", err);\r",
+													"    } else {\r",
+													"        const jsonResponse = response.json();\r",
+													"        if (jsonResponse.token) {\r",
+													"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
+													"            console.log(\"Token guardado:\", jsonResponse.token);\r",
+													"        } else {\r",
+													"            console.log(\"No se recibió token en la respuesta\");\r",
+													"        }\r",
+													"    }\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true,
+										"disableCookies": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/orders/67eafbeb03a0f97182a07802",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"orders",
+												"67eafbeb03a0f97182a07802"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Actualizar solo del usuario",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.sendRequest({\r",
+													"    url: \"http://localhost:3200/users/login\",\r",
+													"    method: \"POST\",\r",
+													"    header: {\r",
+													"        \"Content-Type\": \"application/json\"\r",
+													"    },\r",
+													"    body: {\r",
+													"        mode: \"raw\",\r",
+													"        raw: JSON.stringify({\r",
+													"            email: \"isabella111@example.com\",\r",
+													"            password: \"123456\"\r",
+													"        })\r",
+													"    }\r",
+													"}, function (err, response) {\r",
+													"    if (err) {\r",
+													"        console.log(\"Error en login:\", err);\r",
+													"    } else {\r",
+													"        const jsonResponse = response.json();\r",
+													"        if (jsonResponse.token) {\r",
+													"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
+													"            console.log(\"Token guardado:\", jsonResponse.token);\r",
+													"        } else {\r",
+													"            console.log(\"No se recibió token en la respuesta\");\r",
+													"        }\r",
+													"    }\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableCookies": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "\r\n{\r\n  \"user\": \"isabella111@example.com\",\r\n  \"total\": 5676887800,\r\n  \"date\": \"2025-03-30T12:00:00.000Z\",\r\n  \"state\": \"Pendiente\",\r\n  \"products\": [\r\n    {\r\n      \"product_id\": \"654321\",\r\n      \"quantity\": 2,\r\n      \"toppings\": [\r\n        {\r\n          \"topping_id\": \"111\",\r\n          \"quantity\": 1\r\n        },\r\n        {\r\n          \"topping_id\": \"222\",\r\n          \"quantity\": 2\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"product_id\": \"987654\",\r\n      \"quantity\": 1\r\n    }\r\n  ],\r\n  \"address\": \"Jumbo\"\r\n}\r\n\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/orders/67eafbeb03a0f97182a07802",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"orders",
+												"67eafbeb03a0f97182a07802"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Actualizar orden que no es de ese usuario",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.sendRequest({\r",
+													"    url: \"http://localhost:3200/users/login\",\r",
+													"    method: \"POST\",\r",
+													"    header: {\r",
+													"        \"Content-Type\": \"application/json\"\r",
+													"    },\r",
+													"    body: {\r",
+													"        mode: \"raw\",\r",
+													"        raw: JSON.stringify({\r",
+													"            email: \"isabella111@example.com\",\r",
+													"            password: \"123456\"\r",
+													"        })\r",
+													"    }\r",
+													"}, function (err, response) {\r",
+													"    if (err) {\r",
+													"        console.log(\"Error en login:\", err);\r",
+													"    } else {\r",
+													"        const jsonResponse = response.json();\r",
+													"        if (jsonResponse.token) {\r",
+													"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
+													"            console.log(\"Token guardado:\", jsonResponse.token);\r",
+													"        } else {\r",
+													"            console.log(\"No se recibió token en la respuesta\");\r",
+													"        }\r",
+													"    }\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableCookies": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"user\": \"isabella111@example.com\",\r\n  \"total\": 29.99,\r\n  \"date\": \"2025-03-30T12:00:00.000Z\",\r\n  \"state\": \"Pendiente\",\r\n  \"products\": [\r\n    {\r\n      \"product_id\": \"654321\",\r\n      \"quantity\": 2,\r\n      \"toppings\": [\r\n        {\r\n          \"topping_id\": \"111\",\r\n          \"quantity\": 1\r\n        },\r\n        {\r\n          \"topping_id\": \"222\",\r\n          \"quantity\": 2\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"product_id\": \"987654\",\r\n      \"quantity\": 1\r\n    }\r\n  ],\r\n  \"address\": \"Ciudad Pacifica, universidad Icesi\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}orders/67ea338661392bdc15db81e5",
+											"host": [
+												"{{baseurl}}orders"
+											],
+											"path": [
+												"67ea338661392bdc15db81e5"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Eliminar orden de usuario",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.sendRequest({\r",
+													"    url: \"http://localhost:3200/users/login\",\r",
+													"    method: \"POST\",\r",
+													"    header: {\r",
+													"        \"Content-Type\": \"application/json\"\r",
+													"    },\r",
+													"    body: {\r",
+													"        mode: \"raw\",\r",
+													"        raw: JSON.stringify({\r",
+													"            email: \"isabella111@example.com\",\r",
+													"            password: \"123456\"\r",
+													"        })\r",
+													"    }\r",
+													"}, function (err, response) {\r",
+													"    if (err) {\r",
+													"        console.log(\"Error en login:\", err);\r",
+													"    } else {\r",
+													"        const jsonResponse = response.json();\r",
+													"        if (jsonResponse.token) {\r",
+													"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
+													"            console.log(\"Token guardado:\", jsonResponse.token);\r",
+													"        } else {\r",
+													"            console.log(\"No se recibió token en la respuesta\");\r",
+													"        }\r",
+													"    }\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableCookies": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/orders/67eafbeb03a0f97182a077fd",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"orders",
+												"67eafbeb03a0f97182a077fd"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Eliminar orden que no pertenece al usuario",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.sendRequest({\r",
+													"    url: \"http://localhost:3200/users/login\",\r",
+													"    method: \"POST\",\r",
+													"    header: {\r",
+													"        \"Content-Type\": \"application/json\"\r",
+													"    },\r",
+													"    body: {\r",
+													"        mode: \"raw\",\r",
+													"        raw: JSON.stringify({\r",
+													"            email: \"isabella111@example.com\",\r",
+													"            password: \"123456\"\r",
+													"        })\r",
+													"    }\r",
+													"}, function (err, response) {\r",
+													"    if (err) {\r",
+													"        console.log(\"Error en login:\", err);\r",
+													"    } else {\r",
+													"        const jsonResponse = response.json();\r",
+													"        if (jsonResponse.token) {\r",
+													"            pm.collectionVariables.set(\"token\", jsonResponse.token);\r",
+													"            console.log(\"Token guardado:\", jsonResponse.token);\r",
+													"        } else {\r",
+													"            console.log(\"No se recibió token en la respuesta\");\r",
+													"        }\r",
+													"    }\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableCookies": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"user\": \"isabella111@example.com\",\r\n  \"total\": 29.99,\r\n  \"date\": \"2025-03-30T12:00:00.000Z\",\r\n  \"state\": \"Pendiente\",\r\n  \"products\": [\r\n    {\r\n      \"product_id\": \"654321\",\r\n      \"quantity\": 2,\r\n      \"toppings\": [\r\n        {\r\n          \"topping_id\": \"111\",\r\n          \"quantity\": 1\r\n        },\r\n        {\r\n          \"topping_id\": \"222\",\r\n          \"quantity\": 2\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"product_id\": \"987654\",\r\n      \"quantity\": 1\r\n    }\r\n  ],\r\n  \"address\": \"Ciudad Pacifica, universidad Icesi\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/orders/67ea339c61392bdc15db81ed",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"orders",
+												"67ea339c61392bdc15db81ed"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Crear orden",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableCookies": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user\": \"Isabella@example.com\",\r\n  \"total\": 32.99,\r\n  \"date\": \"2025-03-31T10:30:00.000Z\",\r\n  \"state\": \"En preparación\",\r\n  \"products\": [\r\n    {\r\n      \"product_id\": \"999888\",\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"product_id\": \"777666\",\r\n      \"quantity\": 2,\r\n      \"toppings\": [\r\n        {\r\n          \"topping_id\": \"444\",\r\n          \"quantity\": 3\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"address\": \"Calle Secundaria 99, Ciudad DEF\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear orden con datos inválidos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"packages": {},
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableCookies": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"\",\r\n    \"total\": -100,\r\n    \"date\": \"fecha inválida\",\r\n    \"state\": \"Estado no válido\",\r\n    \"products\": [],\r\n    \"address\": \"\"\r\n}\r\n\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"item": [
+						{
+							"name": "actualizar orden por id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableCookies": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user\": \"Isaaaa@gmai.com\",\r\n  \"total\": 33.99,\r\n  \"date\": \"2025-03-31T10:30:00.000Z\",\r\n  \"state\": \"En preparación\",\r\n  \"products\": [\r\n    {\r\n      \"product_id\": \"999888\",\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"product_id\": \"777666\",\r\n      \"quantity\": 2,\r\n      \"toppings\": [\r\n        {\r\n          \"topping_id\": \"444\",\r\n          \"quantity\": 3\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"address\": \"Calle Secundaria 99, Ciudad DEF\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders/67eae88eb915786b5e54c80c",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"67eae88eb915786b5e54c80c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Orden  que no existe",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableCookies": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/orders/333333",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"333333"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Patch",
+					"item": [
+						{
+							"name": "actualizar estado de una orden que no existe",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableCookies": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"state\": \"unicornio\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders/status/67ea339c61392bdc15db81ed",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"status",
+										"67ea339c61392bdc15db81ed"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "actualizar estado de una orden",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableCookies": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n    \"state\": \"Listo\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders/status/67eae88eb915786b5e54c80c",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"status",
+										"67eae88eb915786b5e54c80c"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "Eliminar una orden que no existe",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableCookies": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"usuario@example.com\",\r\n    \"total\": 15000,\r\n    \"date\": \"2024-03-30T12:00:00.000Z\",\r\n    \"state\": \"Pendiente\",\r\n    \"products\": [\r\n        {\r\n            \"product_id\": \"prod123\",\r\n            \"quantity\": 2,\r\n            \"toppings\": [\r\n                {\r\n                    \"topping_id\": \"top001\",\r\n                    \"quantity\": 1\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"address\": \"Calle 123, Ciudad\"\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders/44444",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"44444"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar un orden que existe",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableCookies": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/orders/67eae869b915786b5e54c806",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"67eae869b915786b5e54c806"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Post",
+					"item": [
+						{
+							"name": "createUser",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Isabella Huila\",\r\n    \"email\": \"Isabella@gmail.com\",\r\n    \"password\": \"Isabella123\",\r\n    \"role\": \"customer\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users/create",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"\r",
+											"if (jsonData && jsonData.token) {\r",
+											"    pm.collectionVariables.set(\"token\", jsonData.token);\r",
+											"    console.log(\"Nuevo token guardado:\", jsonData.token);\r",
+											"} else {\r",
+											"    console.error(\"No se encontró el token en la respuesta o el formato es incorrecto\");\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"leidy@gmail.com\",\r\n    \"password\": \"Daniela123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users/login",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Gets",
+					"item": [
+						{
+							"name": "getUsers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwt}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseurl}}/users",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"item": [
+						{
+							"name": "updateUser",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{baseurl}}/users/update/Isabella@gmail.com",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"update",
+										"Isabella@gmail.com"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "deleteUser",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwt}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseurl}}/users/delete/luisa@gmail.com",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"delete",
+										"luisa@gmail.com"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Gets",
+					"item": [
+						{
+							"name": "getProducts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{baseurl}}/products",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Post",
+					"item": [
+						{
+							"name": "createProduct",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwt}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hamburguesa de Pollo\",\r\n    \"description\": \"Pechuga de pollo empanizada, queso, lechuga, tomate\",\r\n    \"price\": 17000,\r\n    \"category\": \"Hamburguesas\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/products/create",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"products",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"item": [
+						{
+							"name": "updateProduct",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\":6000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/products/update/Papas Fritas",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"products",
+										"update",
+										"Papas Fritas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "deleteProduct",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/products/delete/Aros de Cebolla",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"products",
+										"delete",
+										"Aros de Cebolla"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "baseurl",
+			"value": "https://nodejs-burgerhouse-production.up.railway.app",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "jwt",
+			"value": ""
+		}
+	]
+}
