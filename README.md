@@ -47,7 +47,7 @@ Then run the tests
 
 #Endpoints de la API
 
-##Users
+## Users
 
 - **GET** `/users/`  
 - **POST** `/users/create`  
