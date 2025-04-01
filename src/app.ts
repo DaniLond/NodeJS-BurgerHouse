@@ -2,7 +2,7 @@ import express, {Express} from 'express';
 import { db } from './lib/connectionDB';
 import { userRouter } from './routes/user.routes';
 import { productRouter } from './routes/product.routes';
-import orderRoutes  from "./routes/order.route";
+import orderRoutes from "./routes/order.route";
 
 const app: Express = express();
 
@@ -19,3 +19,5 @@ db.then(()=>{
         console.log(`Server is running on ${PORT} port`);
     })
 })
+
+export { app };
