@@ -1,4 +1,4 @@
-#🍔 NodeJS-BurgerHouse
+🍔 # NodeJS-BurgerHouse
 
 Members: 
 
@@ -55,14 +55,14 @@ Then run the tests
 - **PUT** `/users/update/:email`  
 - **DELETE** `/users/delete/:email`
 
-##Products
+## Products
 - **GET** `/products/`  
 - **POST** `/products/create`  
 - **PUT** `/products/update/:name`  
 - **DELETE** `/products/delete/:name`
 
 
-##Orders
+## Orders
 - **POST** `/orders/`  
 - **GET** `/orders/`  
 - **GET** `/orders/:id`  
