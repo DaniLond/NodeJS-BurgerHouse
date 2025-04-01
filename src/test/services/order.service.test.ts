@@ -1,7 +1,7 @@
-import { orderService } from '../../../services/order.service';
-import { Order, OrderDocument, OrderInput } from '../../../models/order.model';
+import { orderService } from '../../services/order.service';
+import { Order, OrderDocument, OrderInput } from '../../models/order.model';
 
-jest.mock('../../../models/order.model', () => {
+jest.mock('../../models/order.model', () => {
   const mockOrderDocument = {
     _id: 'mockId123',
     user: 'test@example.com',

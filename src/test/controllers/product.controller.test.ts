@@ -1,9 +1,9 @@
-import { productController } from '../../../controllers/product.controller';
-import { productService } from '../../../services/product.service';
+import { productController } from '../../controllers/product.controller';
+import { productService } from '../../services/product.service';
 import { Request, Response } from 'express';
-import { ProductDocument, ProductInput } from '../../../models/product.model';
+import { ProductDocument, ProductInput } from '../../models/product.model';
 
-jest.mock('../../../services/product.service');
+jest.mock('../../services/product.service');
 
 describe('Product Controller Tests', () => {
   let mockReq: Partial<Request>;

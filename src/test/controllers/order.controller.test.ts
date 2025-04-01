@@ -1,11 +1,11 @@
-import { orderController } from '../../../controllers/order.controller';
-import { orderService } from '../../../services/order.service';
-import { securityService } from '../../../services';
+import { orderController } from '../../controllers/order.controller';
+import { orderService } from '../../services/order.service';
+import { securityService } from '../../services';
 import { Request, Response } from 'express';
-import { OrderDocument, OrderInput } from '../../../models/order.model';
+import { OrderDocument, OrderInput } from '../../models/order.model';
 
-jest.mock('../../../services/order.service');
-jest.mock('../../../services');
+jest.mock('../../services/order.service');
+jest.mock('../../services');
 
 describe('Order Controller Tests', () => {
   let mockReq: Partial<Request>;

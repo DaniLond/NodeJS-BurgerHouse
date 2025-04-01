@@ -1,9 +1,9 @@
-import { productService } from '../../../services/product.service';
-import { ProductDocument, ProductInput, ProductModel } from '../../../models/product.model';
+import { productService } from '../../services/product.service';
+import { ProductDocument, ProductInput, ProductModel } from '../../models/product.model';
 import mongoose from 'mongoose';
 
 
-jest.mock('../../../models/product.model');
+jest.mock('../../models/product.model');
 
 describe('Product Service Tests', () => {
   beforeEach(() => {
