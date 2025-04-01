@@ -1,4 +1,4 @@
-🍔 # NodeJS-BurgerHouse
+🍔 NodeJS-BurgerHouse
 
 Members: 
 
@@ -45,7 +45,7 @@ Then run the tests
   npm run test 
 ```
 
-#Endpoints de la API
+# Endpoints de la API
 
 ## Users
 
