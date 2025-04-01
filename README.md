@@ -1,4 +1,4 @@
-# NodeJS-BurgerHouse
+#🍔 NodeJS-BurgerHouse
 
 Members: 
 
@@ -20,17 +20,60 @@ Delivery drivers: Require an organized system for receiving and completing deliv
 
 How to run the project??
 
-- To implement the project, the following must be done 
+1. clone the repository
+```sh
+   git clone https://github.com/DaniLond/NodeJS-BurgerHouse
+   cd NodeJs-BurgerHouse
+```
+2. install the dependencies
+```sh
+  npm install
+```
 
-`npm run dev´
+3. Compile the code
+```sh
+  npm run dev
+```
+4. Run the tests
+   
+  First install jest
+  ```sh
+  npm install --save-dev jest ts-jest @types/jest typescript  
+```
+Then run the tests
+```sh
+  npm run test 
+```
 
-- configure jest for Typescrip
+#Endpoints de la API
 
-`npm install --save-dev jest ts-jest @types/jest typescript´
+##Users
 
-- to run the tests 
+- **GET** `/users/`  
+- **POST** `/users/create`  
+- **POST** `/users/login`  
+- **PUT** `/users/update/:email`  
+- **DELETE** `/users/delete/:email`
 
-`npm run test´
+##Products
+- **GET** `/products/`  
+- **POST** `/products/create`  
+- **PUT** `/products/update/:name`  
+- **DELETE** `/products/delete/:name`
+
+
+##Orders
+- **POST** `/orders/`  
+- **GET** `/orders/`  
+- **GET** `/orders/:id`  
+- **PUT** `/orders/:id`  
+- **DELETE** `/orders/:id`  
+- **PATCH** `/orders/status/:id`
+
+
+
+
+
 
 
 
