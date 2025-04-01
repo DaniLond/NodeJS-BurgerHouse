@@ -100,4 +100,66 @@ describe('SecurityService Tests', () => {
       expect(bcrypt.compare).toHaveBeenCalledWith(password, hashedPassword);
     });
   });
+
+  describe('getClaims', () => {
+    it('Debería extraer correctamente los claims de un token válido', async () => {
+      // Arrange
+      const token = 'Bearer validToken123';
+      const decodedToken = {
+        _id: '507f1f77bcf86cd799439011',
+        email: 'test@example.com',
+        role: 'user'
+      };
+      (jwt.verify as jest.Mock).mockReturnValue(decodedToken);
+
+      // Act
+      const result = await securityService.getClaims(token);
+
+      // Assert
+      expect(result).toEqual({
+        _id: decodedToken._id,
+        email: decodedToken.email,
+        role: decodedToken.role
+      });
+      expect(jwt.verify).toHaveBeenCalledWith('validToken123', 'secret');
+      expect(jwt.verify).toHaveBeenCalledTimes(1);
+    });
+
+    it('Debería lanzar un error si no se proporciona un token', async () => {
+      // Act & Assert
+      await expect(securityService.getClaims(undefined)).rejects.toThrow('Token no proporcionado');
+      expect(jwt.verify).not.toHaveBeenCalled();
+    });
+
+    it('Debería lanzar un error si el formato del token es inválido', async () => {
+      // Arrange
+      const invalidToken = 'invalidTokenFormat';
+
+      // Act & Assert
+      await expect(securityService.getClaims(invalidToken)).rejects.toThrow('Token inválido');
+      expect(jwt.verify).not.toHaveBeenCalled();
+    });
+
+    it('Debería lanzar un error si el prefijo del token no es "Bearer"', async () => {
+      // Arrange
+      const invalidToken = 'Invalid validToken123';
+
+      // Act & Assert
+      await expect(securityService.getClaims(invalidToken)).rejects.toThrow('Token inválido');
+      expect(jwt.verify).not.toHaveBeenCalled();
+    });
+
+    it('Debería lanzar un error si jwt.verify falla', async () => {
+      // Arrange
+      const token = 'Bearer validToken123';
+      const errorMessage = 'Token verification failed';
+      (jwt.verify as jest.Mock).mockImplementation(() => {
+        throw new Error(errorMessage);
+      });
+
+      // Act & Assert
+      await expect(securityService.getClaims(token)).rejects.toThrow('Token inválido');
+      expect(jwt.verify).toHaveBeenCalledWith('validToken123', 'secret');
+    });
+  });
 });

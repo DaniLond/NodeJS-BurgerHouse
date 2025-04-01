@@ -38,8 +38,8 @@ const orderSchema = new Schema<OrderDocument>({
             quantity: { type: Number, required: true, min: 1 },
             toppings: [
                 {
-                    topping_id: { type: String, required: true },
-                    quantity: { type: Number, required: true, min: 1 }
+                    topping_id: String,
+                    quantity: Number
                 }
             ]
         }

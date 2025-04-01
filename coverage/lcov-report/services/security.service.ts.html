@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.57% </span>
+                <span class="strong">78.94% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/19</span>
+                <span class='fraction'>15/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>6/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.57% </span>
+                <span class="strong">78.94% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/19</span>
+                <span class='fraction'>15/19</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -140,24 +140,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,25 +189,25 @@ class SecurityService{
 <span class="cstat-no" title="statement not covered" >        throw new Error("Invalid token");</span>
     }
 }
-async <span class="fstat-no" title="function not covered" >getClaims(</span>token?: string) {
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!token) {</span>
-<span class="cstat-no" title="statement not covered" >        throw new Error("Token no proporcionado");</span>
+async getClaims(token?: string) {
+    if (!token) {
+        throw new Error("Token no proporcionado");
     }
-<span class="cstat-no" title="statement not covered" >    try {</span>
-        const tokenParts = <span class="cstat-no" title="statement not covered" >token.split(" ");</span>
-<span class="cstat-no" title="statement not covered" >        <span class="missing-if-branch" title="if path not taken" >I</span>if (tokenParts.length !== 2 || tokenParts[0] !== "Bearer") {</span>
-<span class="cstat-no" title="statement not covered" >            throw new Error("Formato de token inválido");</span>
+    try {
+        const tokenParts = token.split(" ");
+        if (tokenParts.length !== 2 || tokenParts[0] !== "Bearer") {
+            throw new Error("Formato de token inválido");
         }
 &nbsp;
-        const decoded = <span class="cstat-no" title="statement not covered" >jwt.verify(tokenParts[1], process.env.JWT_SECRET || "secret") as jwt.JwtPayload;</span>
+        const decoded = jwt.verify(tokenParts[1], process.env.JWT_SECRET || "secret") as jwt.JwtPayload;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        return {</span>
+        return {
             _id: decoded._id,
             email: decoded.email,
             role: decoded.role
         };
     } catch (error) {
-<span class="cstat-no" title="statement not covered" >        throw new Error("Token inválido");</span>
+        throw new Error("Token inválido");
     }
 }
 }
@@ -220,7 +220,7 @@ export const securityService = new SecurityService();</pre></td></tr></table></p
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-01T04:02:55.527Z
+                at 2025-04-01T21:32:42.998Z
             </div>
         <script src="../prettify.js"></script>
         <script>
